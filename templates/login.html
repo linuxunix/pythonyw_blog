@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block container%}
+    <div class="col-xs-12 col-sm-9">
+        <form method="post" action="{% url 'login' %}"> {% csrf_token %}
+
+            <input type="text" name="inputUsername" placeholder="username" />
+            <input type="password" name="inputPassword" placeholder="password" />
+            <input type="submit" value="Login" class="btn btn-success" />
+
+        </form>
+
+        <p style="color: red">{{ login_err }}</p>
+    </div>
+
+{% endblock %}

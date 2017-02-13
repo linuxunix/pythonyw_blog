@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block container%}
+    <div class="col-xs-12 col-sm-9">
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+            <p style="text-align: center;">{{ error }}</p>
+    </div>
+    {% endif %}
+        <form class="form-horizontal" method="post" action="" enctype="multipart/form-data"> {% csrf_token %}
+              <div class="form-group">
+                <label for="inputTitle" class="col-sm-2 control-label">文章标题</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="title" placeholder="title...">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputSummary" class="col-sm-2 control-label">文章简介</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" name="summary"></textarea>
+                </div>
+              </div>
+               <div class="form-group">
+                <label for="inputType" class="col-sm-2 control-label">文章分类</label>
+                <div class="col-sm-10">
+                      <select  id="type" name="type">
+                        <option value="Linux运维" name="Linuxyw" >Linux运维</option>
+                        <option value="Python编程" name="Pythonbc">Python编程</option>
+                      </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputCategory" class="col-sm-2 control-label">文章Category</label>
+                <div class="col-sm-10">
+                      <select  id="type" name="category">
+                        {% for Category in  Categorys %}
+                        <option value="{{ Category.id }}" name="{{ Category.id }}" >{{ Category }}</option>
+                        {% endfor %}
+                      </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">标题图片</label>
+                <div class="col-sm-10">
+                    <input type="file" name="head_img" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">内容</label>
+                <div class="col-sm-10">
+                  <textarea id="create_bbs" name="content"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">发贴</button>
+                </div>
+              </div>
+        </form>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+<script src="/static/plugins/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+
+        tinymce.init({
+            selector: "#create_bbs",
+            theme: "modern",
+            //width: 300,
+            height: 300,
+            plugins: [
+                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                 "save table contextmenu directionality emoticons template paste textcolor"
+           ],
+           //content_css: "css/content.css",
+           toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+           style_formats: [
+                {title: 'Bold text', inline: 'b'},
+                {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                {title: 'Example 1', inline: 'span', classes: 'example1'},
+                {title: 'Example 2', inline: 'span', classes: 'example2'},
+                {title: 'Table styles'},
+                {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+            ]
+        });
+
+</script>
+
+{% endblock %}

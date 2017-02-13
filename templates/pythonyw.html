@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block container%}
+    <div class="col-xs-12 col-sm-9">
+            {% for article in articles %}
+              <h4  class="pythonyw_article"><a  href="/article/?id={{ article.id }} " > {{ article.title }}</a>
+                 &nbsp;<span class="badge">{{ article.publish_date|date:"Y-m-d"  }}</span>
+                </h4>
+             {% endfor %}
+
+        <nav>
+              <ul class="pagination">
+
+                {% if articles.has_previous %}
+                   <li ><a href="?page={{ articles.previous_page_number }}" >上一页</a></li>
+                {% endif %}
+
+                {% for p_num in articles.paginator.page_range  %}
+                    {% if p_num == articles.number %}
+                         <li class="active"><a href="?page={{ p_num }}">{{ p_num }}</a></li>
+                    {% else %}
+                         <li ><a href="?page={{ p_num }}">{{ p_num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+              {% if articles.has_next %}
+                       <li ><a href="?page={{ articles.next_page_number }}" >下一页</a></li>
+                {% endif %}
+              </ul>
+        </nav>
+    </div>
+
+{% endblock %}

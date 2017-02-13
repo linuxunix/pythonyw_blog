@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block css %}
+        <link href="/static/css/article.css" rel="stylesheet">
+{% endblock %}
+{% block container%}
+    <div class="col-xs-12 col-sm-9 id_article">
+        <h2>{{ id_article }}</h2>
+        <div class="single-meta">
+            <span>{{ id_article.author }}&nbsp;&nbsp;标签:{{ id_article.category }}&nbsp;&nbsp;{{ id_article.publish_date|date:"Y-m-d"  }}</span>
+        </div>
+        <p>
+            {{ id_article.content|safe  }}
+        </p>
+    </div>
+{% endblock %}
