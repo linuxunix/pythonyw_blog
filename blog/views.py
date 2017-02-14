@@ -101,19 +101,6 @@ def create_blog(request):
         return HttpResponse(html_ele)
 
 def search(request):
-    articles = models.Article.objects.all().filter(title__contains=request.POST.get('search'))
+    articles = models.Article.objects.all().filter(title__icontains=request.POST.get('search'))
     return render(request, 'search.html', locals())
 
-@csrf_exempt  #屏蔽跨站检测
-def test(request):
-    if request.method == 'POST' :
-        # data= [  "{value:335, name:'直接访问'}",
-        #         "{value:310, name:'邮件营销''}",
-        #         "{value:234, name:'联盟广告'}",
-        #         "{value:135, name:'视频广告'}",
-        #         "{value:1548, name:'搜索引擎'}"]
-        data=[]
-        print json.dumps(data)
-        return HttpResponse(json.dumps(data), content_type="application/json")
-    else:
-        return render(request,'test.html', locals())
