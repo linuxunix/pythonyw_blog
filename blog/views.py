@@ -84,10 +84,16 @@ def create_blog(request):
     if request.method == "GET":
         return render(request, 'create_blog.html', {'articles':articles ,'Categorys':Categorys})
     elif request.method == 'POST':
-        print request.POST.get('category')
         if request.POST.get('title') == '':
             error = '文章标题不能为空'
             return render(request, 'create_blog.html', {'articles': articles,'error':error})
+        else:
+            try:
+                if models.Article.objects.get(title=request.POST.get('title')) != '':
+                    error = '文章标题已经创建，请选择其它标题'
+                    return render(request, 'create_blog.html', {'articles': articles, 'error': error})
+            except:
+                pass
         if request.POST.get('summary') == '':
             error = '文章简介不能为空'
             return render(request, 'create_blog.html', {'articles': articles,'error':error})
@@ -101,7 +107,8 @@ def create_blog(request):
         return HttpResponse(html_ele)
 
 def search(request):
-    articles = models.Article.objects.all().filter(title__contains=request.POST.get('search'))
+    articles = models.Article.objects.filter(title__icontains=request.POST.get('search'))
+    # articles = models.Article.objects.all().filter(title__contains=request.POST.get('search'))
     return render(request, 'search.html', locals())
 
 @csrf_exempt  #屏蔽跨站检测
