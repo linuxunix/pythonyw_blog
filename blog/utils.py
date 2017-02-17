@@ -15,7 +15,6 @@ class ArticleGen(object):
         'author_id': self.request.user.userprofile.id,
         'head_img':'',
         }
-        print form_data
         return form_data
 
     def create(self):
