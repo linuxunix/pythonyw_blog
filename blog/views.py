@@ -120,6 +120,7 @@ def test(request):
         #         "{value:135, name:'视频广告'}",
         #         "{value:1548, name:'搜索引擎'}"]
         data=[]
+
         print json.dumps(data)
         return HttpResponse(json.dumps(data), content_type="application/json")
     else:
