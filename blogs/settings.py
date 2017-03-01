@@ -25,7 +25,7 @@ SECRET_KEY = 'm1r0r*51$7zs@6+s95)gnrg0_o3t$ey&h*e2ua4f#em(+_&fo9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.248','pythonyw.cn','www.pythonyw.cn']
+ALLOWED_HOSTS = ['xx','pythonyw.cn','www.pythonyw.cn']
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'blogs.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'xxx',
+        'NAME': 'blog',
         'USER':'xx',
         'HOST':'xxx',
         'PASSWORD':'xxx',
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 

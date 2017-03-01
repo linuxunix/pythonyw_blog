@@ -89,7 +89,7 @@ def create_blog(request):
             return render(request, 'create_blog.html', {'articles': articles,'error':error})
         else:
             try:
-                if models.Article.objects.get(title=request.POST.get('title')):
+                if models.Article.objects.get(title=request.POST.get('title')) != '':
                     error = '文章标题已经创建，请选择其它标题'
                     return render(request, 'create_blog.html', {'articles': articles, 'error': error})
             except:
@@ -120,7 +120,6 @@ def test(request):
         #         "{value:135, name:'视频广告'}",
         #         "{value:1548, name:'搜索引擎'}"]
         data=[]
-
         print json.dumps(data)
         return HttpResponse(json.dumps(data), content_type="application/json")
     else:

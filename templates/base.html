@@ -64,55 +64,58 @@
 	</div>
 </header>
 
-    <div class="container" style="min-height: 800px" >
-        {% block container%}
-                <div class="col-xs-12 col-sm-9" >
-                    {% for article in articles%}
-                         <div class="head-img col-md-3">
-                                    <img src="{{ article.head_img }}">
-                          </div>
+          <div class="container">
 
-                        <div class="col-xs-3 col-lg-9 article">
-                      <h3 class="active_title"><a  href="/article/?id={{ article.id }}" > {{ article.title }} </a></h3>
-                          <a>{{ article.author.name }}</a>&nbsp;<span class="badge">{{ article.publish_date|date:"Y-m-d H:i"  }}</span>&nbsp;<span><b style="color: #606770">标签:<a class="label label-success">{{ article.category }}</a></b></span>
-                   <p>{{ article.summary }}</p>
-                    </div>
+      <div class="row row-offcanvas row-offcanvas-right">
+{% block container%}
+        <div class="col-xs-12 col-sm-9" style="height: 90%">
+            {% for article in articles%}
+                 <div class="head-img col-md-3">
+                            <img src="{{ article.head_img }}">
+                  </div>
 
-                     {% endfor %}
-                </div>
-        {% endblock %}
-                <div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
-                  <div class="list-group">
-                    <a href="#" class="list-group-item active">linux运维外链博客:</a>
-                    <a href="http://www.linuxunix.xyz" target="_blank" class="list-group-item">LinuxUnix.xyz</a>
-                    <a href="#" class="list-group-item">Link</a>
-                  </div>
-                  <div class="list-group">
-                    <a href="#" class="list-group-item active">博客标签:</a>
-                        <span class="label label-default">Nginx</span>
-                        <span class="label label-primary">Keepalived</span>
-                        <span class="label label-success">Redis</span>
-                        <span class="label label-info">Tomcat</span>
-                        <span class="label label-warning">Python</span>
-                        <span class="label label-danger">Php</span>
-                        <span class="label label-default">Nginx</span>
-                        <span class="label label-primary">Keepalived</span>
-                        <span class="label label-success">Redis</span>
-                        <span class="label label-info">Tomcat</span>
-                        <span class="label label-warning">Python</span>
-                        <span class="label label-danger">Php</span>
-                  </div>
-                  <div class="list-group">
-                    <a href="#" class="list-group-item active">最新发布:</a>
-                         {% for article in articles%}
-                     <a  href="/article/?id={{ article.id }}" target="_blank" class="list-group-item">{{ article.title }}&nbsp;|&nbsp;<span class="label label-success">{{ article.publish_date|date:"Y-m-d" }}</span></a>
-                        {% endfor %}
-                  </div>
-                </div>
-              </div>
-              <footer class="panel-footer">
-                <p>&copy; Pythonyw.cn@2016</p>
-              </footer>
+                <div class="col-xs-3 col-lg-9 article">
+              <h3 class="active_title"><a  href="/article/?id={{ article.id }}" > {{ article.title }} </a></h3>
+                  <a>{{ article.author.name }}</a>&nbsp;<span class="badge">{{ article.publish_date|date:"Y-m-d H:i"  }}</span>&nbsp;<span><b style="color: #606770">标签:<a class="label label-success">{{ article.category }}</a></b></span>
+           <p>{{ article.summary }}</p>
+            </div>
+
+             {% endfor %}
+        </div>
+{% endblock %}
+        <div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">linux运维外链博客:</a>
+            <a href="http://www.linuxunix.xyz" target="_blank" class="list-group-item">LinuxUnix.xyz</a>
+            <a href="https://github.com/linuxunix" target="_blank" class="list-group-item">github.com/linuxunix</a>
+          </div>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">博客标签:</a>
+                <span class="label label-default">Nginx</span>
+                <span class="label label-primary">Keepalived</span>
+                <span class="label label-success">Redis</span>
+                <span class="label label-info">Tomcat</span>
+                <span class="label label-warning">Python</span>
+                <span class="label label-danger">Php</span>
+                <span class="label label-default">Nginx</span>
+                <span class="label label-primary">Keepalived</span>
+                <span class="label label-success">Redis</span>
+                <span class="label label-info">Tomcat</span>
+                <span class="label label-warning">Python</span>
+                <span class="label label-danger">Php</span>
+          </div>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">最新发布:</a>
+                 {% for article in articles%}
+             <a  href="/article/?id={{ article.id }}" target="_blank" class="list-group-item">{{ article.title }}&nbsp;|&nbsp;<span class="label label-success">{{ article.publish_date|date:"Y-m-d" }}</span></a>
+                {% endfor %}
+          </div>
+        </div>
+      </div>
+      </div>
+      <footer class="panel-footer">
+        <p>&copy; Pythonyw.cn@2016</p>
+      </footer>
     </div>
 {% block js %}
 {% endblock %}
